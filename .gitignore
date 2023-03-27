@@ -12,3 +12,6 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 /.vscode/settings.json
+/docker/nginx/ssl/cert.pem
+/docker/nginx/ssl/key.pem
+/docker/php/certificate-authority/certificate.cert
