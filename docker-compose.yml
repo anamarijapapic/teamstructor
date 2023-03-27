@@ -1,0 +1,84 @@
+version: "3.9"
+services:
+  nginx:
+    container_name: teamstructor_nginx
+    build: ./docker/nginx/
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - php
+    volumes:
+      - ./src/teamstructor-app:/var/www/html:cached
+
+  php:
+    container_name: teamstructor_php
+    build: ./docker/php/
+    expose:
+      - 9000
+    working_dir: /var/www/html/
+    environment:
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    links:
+      - db
+    volumes:
+      - ./src/teamstructor-app:/var/www/html:cached
+
+  db:
+    container_name: teamstructor_db
+    platform: linux/x86_64
+    image: mysql:5.7
+    user: root
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/db/mysql:/docker-entrypoint-initdb.d
+      - mysql-db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+
+  phpmyadmin:
+    container_name: teamstructor_phpmyadmin
+    build: ./docker/phpmyadmin/
+    ports:
+      - 8080:80
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+
+  redis:
+    container_name: teamstructor_redis
+    image: redis:alpine
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    # command: --loglevel verbose
+
+  phpredisadmin:
+    container_name: teamstructor_phpredisadmin
+    image: erikdubbelboer/phpredisadmin
+    depends_on:
+      - redis
+    environment:
+      REDIS_1_HOST: redis
+      REDIS_1_PORT: 6379
+    links:
+      - redis
+    ports:
+      - 8085:80
+
+  mailhog:
+    container_name: teamstructor_mailhog
+    platform: linux/x86_64
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui
+
+volumes:
+  mysql-db-data:

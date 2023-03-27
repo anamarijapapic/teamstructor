@@ -1,0 +1,20 @@
+{
+  "name": "laravel",
+  "version": "0.1.0",
+  "description": "Laravel Udemy course CMS blog website.",
+  "main": "index.js",
+  "scripts": {
+    "addcert": "node node_modules/@runforest/run/index.js devcert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:Agilo/laravel-course-apapic.git"
+  },
+  "author": "anamarija.papic@agilo.co",
+  "license": "ISC",
+  "homepage": "https://github.com/Agilo/laravel-course-apapic/blob/master/README.md",
+  "dependencies": {
+    "@runforest/devcert": "^1.0.0",
+    "@runforest/run": "^2.0.0"
+  }
+}
