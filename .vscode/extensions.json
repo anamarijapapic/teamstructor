@@ -1,0 +1,33 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+	// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+
+	// List of extensions which should be recommended for users of this workspace.
+	"recommendations": [
+        "formulahendry.auto-close-tag",
+        // "coenraads.bracket-pair-colorizer",
+        "mikestead.dotenv",
+        "vincaslt.highlight-matching-tag",
+        "xabikos.javascriptsnippets",
+        "onecentlin.laravel-blade",
+        "austenc.laravel-blade-spacer",
+        "dacoto.laravel-easy-blade-snippets",
+        "dacoto.laravel-easy-blade-snippets",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "codingyu.laravel-goto-view",
+        "pkief.material-icon-theme",
+        "leizongmin.node-module-intellisense",
+        "christian-kohler.npm-intellisense",
+        "christian-kohler.path-intellisense",
+        "bmewburn.vscode-intelephense-client",
+        "marabesi.php-import-checker",
+        "mehedidracula.php-namespace-resolver",
+        "kokororin.vscode-phpfmt",
+        "greven.umbra",
+        "visualstudioexptteam.vscodeintellicode"
+	],
+	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+	"unwantedRecommendations": [
+
+	]
+}
