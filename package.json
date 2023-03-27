@@ -1,18 +1,18 @@
 {
-  "name": "laravel",
+  "name": "teamstructor",
   "version": "0.1.0",
-  "description": "Laravel Udemy course CMS blog website.",
+  "description": "Teamstructor - web application that serves as a teamwork platform.",
   "main": "index.js",
   "scripts": {
     "addcert": "node node_modules/@runforest/run/index.js devcert"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:Agilo/laravel-course-apapic.git"
+    "url": "git+ssh://git@github.com:anamarijapapic/teamstructor.git"
   },
-  "author": "anamarija.papic@agilo.co",
+  "author": "ap48790@oss.unist.hr",
   "license": "ISC",
-  "homepage": "https://github.com/Agilo/laravel-course-apapic/blob/master/README.md",
+  "homepage": "https://github.com/anamarijapapic/teamstructor/blob/master/README.md",
   "dependencies": {
     "@runforest/devcert": "^1.0.0",
     "@runforest/run": "^2.0.0"
