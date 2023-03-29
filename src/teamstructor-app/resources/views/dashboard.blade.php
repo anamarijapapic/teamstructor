@@ -88,11 +88,16 @@
                                                                 title="{{ $team->owner->name }}" alt="">
                                                             {{ __('Members:') }}
                                                             <div class="flex -space-x-4">
-                                                                @foreach ($team->users as $member)
+                                                                @forelse ($team->users as $member)
                                                                     <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800"
                                                                         src="{{ $member->profile_photo_url }}"
                                                                         title="{{ $member->name }}" alt="">
-                                                                @endforeach
+                                                                @empty
+                                                                    <p
+                                                                        class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                                        {{ __('No members yet!') }}
+                                                                    </p>
+                                                                @endforelse
                                                             </div>
                                                         </div>
                                                     </div>
