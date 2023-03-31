@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Team;
+use App\Models\User;
 use App\Policies\TeamPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::before(function (User $user, string $ability) {
+            if ($user->isAdministrator()) {
+                return true;
+            }
+        });
     }
 }

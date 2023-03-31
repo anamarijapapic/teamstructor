@@ -7,6 +7,14 @@
 
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            @if (auth()->user()->isAdministrator())
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ __('You have administrator rights.') }}
+                </h2>
+
+                <x-section-border />
+            @endif
+
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
 

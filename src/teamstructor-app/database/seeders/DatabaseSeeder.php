@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->withPersonalTeam()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'is_administrator' => true,
         ]);
     }
 }

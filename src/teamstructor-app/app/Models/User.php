@@ -38,6 +38,7 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'is_administrator',
     ];
 
     /**
@@ -57,4 +58,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Determine if the user has administrator rights.
+     *
+     * @return bool
+     */
+    public function isAdministrator()
+    {
+        return $this->is_administrator;
+    }
 }
