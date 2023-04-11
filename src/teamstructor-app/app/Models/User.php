@@ -68,4 +68,19 @@ class User extends Authenticatable
     {
         return $this->is_administrator;
     }
+
+    /**
+     * Determine if the user owns the given project.
+     *
+     * @param  mixed  $project
+     * @return bool
+     */
+    public function ownsProject($project)
+    {
+        if (is_null($project)) {
+            return false;
+        }
+
+        return $this->id == $project->{$this->getForeignKey()};
+    }
 }
