@@ -10,6 +10,7 @@
         "laravel/framework": "^10.0",
         "laravel/jetstream": "^3.1",
         "laravel/sanctum": "^3.2",
+        "laravel/telescope": "^4.14",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^2.11"
     },
@@ -52,7 +53,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "config": {
