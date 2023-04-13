@@ -10,7 +10,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'team_id', 'user_id'];
+    protected $fillable = ['name', 'description', 'team_id', 'user_id'];
 
     /**
      * Get the team that owns the project.

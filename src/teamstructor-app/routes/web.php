@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Livewire\Projects\Projects;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::resource('teams.projects', ProjectController::class);
+    Route::resource('teams.projects', ProjectController::class)->only(['show']);
+    Route::get('teams/{team}/projects', Projects::class)->name('teams.projects');
 });
