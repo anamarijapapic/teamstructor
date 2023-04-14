@@ -20,6 +20,8 @@ class Projects extends Component
 
     public $description;
 
+    public $team;
+
     public $team_id;
 
     public $user_id;
@@ -37,8 +39,8 @@ class Projects extends Component
 
     public function render()
     {
-        $team = Team::findOrFail($this->team_id);
-        $this->projects = $team->projects()->get();
+        $this->team = Team::findOrFail($this->team_id);
+        $this->projects = $this->team->projects;
 
         return view('livewire.projects.projects');
     }

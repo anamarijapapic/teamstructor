@@ -22,8 +22,6 @@ class Project extends Model
 
     /**
      * Get the user that owns the project.
-     *
-     * @return \App\Models\User
      */
     public function user(): BelongsTo
     {

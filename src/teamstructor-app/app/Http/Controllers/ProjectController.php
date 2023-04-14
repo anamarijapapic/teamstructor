@@ -42,7 +42,10 @@ class ProjectController extends Controller
      */
     public function show(Team $team, Project $project)
     {
-        dd($project);
+        $team = Team::findOrFail($team->id);
+        $project = Project::where('team_id', $team->id)->findOrFail($project->id);
+
+        return view('projects.show', ['project' => $project]);
     }
 
     /**
