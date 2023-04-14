@@ -63,8 +63,13 @@ You should have the following installed with respective minimal versions:
 9. Do a initial build of the website assets by running: `npm run build` from `src/teamstructor-app/` directory
 10. Build and start the local web server for the first time: `docker-compose up`
 11. Install Composer dependencies: `docker exec -it teamstructor_php composer install`
-12. Open [https://teamstructor.test/](https://teamstructor.test/) in your browser
-13. Work with the code in the directory.
+12. Generate application key: `docker exec -it teamstructor_php php artisan key:generate`
+13. Create symbolic link for storage: `docker exec -it teamstructor_php php artisan storage:link`
+  - If needed alter folder permissions for `src/teamstructor-app/storage` folder: `sudo chmod o+w ./storage/ -R` from `src/teamstructor-app/` directory
+14. Run database migrations: `docker exec -it teamstructor_php php artisan migrate`
+15. Seed the database: `docker exec -it teamstructor_php php artisan db:seed`
+16. Open [https://teamstructor.test/](https://teamstructor.test/) in your browser
+17. Work with the code in the directory.
 
 ### Working With the 'dev' Environment
 
@@ -84,7 +89,7 @@ To run **Artisan** commands from terminal run command from repo root directory:
 
 #### Managing the Database
 
-A DB administration tool, [PHPMyAdmin](https://www.phpmyadmin.net), is available at http://localhost:8080/.
+A DB administration tool, [phpMyAdmin](https://www.phpmyadmin.net), is available at http://localhost:8080/.
 You can connect to MySQL yourself using the port `3306` on `localhost` from your host. Username and password is `root`.
 
 A simple web interface to manage Redis databases, [phpRedisAdmin](https://github.com/erikdubbelboer/phpRedisAdmin), is available at http://localhost:8085/.
