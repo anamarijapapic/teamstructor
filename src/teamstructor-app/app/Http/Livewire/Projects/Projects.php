@@ -32,6 +32,11 @@ class Projects extends Component
 
     public $projectIdBeingDeleted;
 
+    protected $rules = [
+        'name' => 'required',
+        'description' => 'required|min:6',
+    ];
+
     public function mount($team)
     {
         $this->team_id = $team;
@@ -53,10 +58,7 @@ class Projects extends Component
 
     public function store()
     {
-        $this->validate([
-            'name' => 'required',
-            'description' => 'required',
-        ]);
+        $this->validate();
 
         Project::updateOrCreate(
             ['id' => $this->project_id],
