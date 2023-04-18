@@ -34,7 +34,7 @@ class Projects extends Component
 
     protected $rules = [
         'name' => 'required',
-        'description' => 'required|min:6',
+        'description' => 'required',
     ];
 
     public function mount($team)
