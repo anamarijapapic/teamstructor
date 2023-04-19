@@ -45,6 +45,7 @@ class Projects extends Component
     public function render()
     {
         $this->team = Team::findOrFail($this->team_id);
+
         $this->projects = $this->team->projects;
 
         return view('livewire.projects.projects');
