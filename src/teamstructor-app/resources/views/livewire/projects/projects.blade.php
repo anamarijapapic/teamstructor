@@ -103,9 +103,9 @@
             <div class="mt-4">
                 <x-label for="description" value="{{ __('Description') }}" />
                 <textarea id="description" rows="3"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                     wire:model.defer="description">
-            </textarea>
+                </textarea>
                 <x-input-error for="description" class="mt-2" />
             </div>
         </x-slot>

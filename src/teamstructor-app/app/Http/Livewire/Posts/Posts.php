@@ -8,12 +8,12 @@ use App\Models\Team;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Posts extends Component
 {
+    use WithPagination;
     use InteractsWithBanner;
-
-    public $posts;
 
     public $post_id;
 
@@ -21,15 +21,9 @@ class Posts extends Component
 
     public $content;
 
-    public $user_id;
+    public Team $team;
 
-    public $team;
-
-    public $team_id;
-
-    public $project;
-
-    public $project_id;
+    public Project $project;
 
     public $creatingOrEditingPost = false;
 
@@ -42,20 +36,9 @@ class Posts extends Component
         'content' => 'required',
     ];
 
-    public function mount($team, $project)
-    {
-        $this->team_id = $team;
-        $this->project_id = $project;
-    }
-
     public function render()
     {
-        $this->team = Team::findOrFail($this->team_id);
-        $this->project = Project::findOrFail($this->project_id);
-
-        $this->posts = $this->project->posts;
-
-        return view('livewire.posts.posts');
+        return view('livewire.posts.posts', ['posts' => $this->project->posts()->paginate(5)]);
     }
 
     public function create()
@@ -73,7 +56,7 @@ class Posts extends Component
             [
                 'title' => $this->title,
                 'content' => $this->content,
-                'project_id' => $this->project_id,
+                'project_id' => $this->project->id,
                 'user_id' => Auth::user()->id,
             ]
         );
