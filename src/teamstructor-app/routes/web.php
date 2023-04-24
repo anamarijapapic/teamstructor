@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Posts\Posts;
+use App\Http\Livewire\Posts\ShowPosts;
 use App\Http\Livewire\Projects\Projects;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +28,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('teams/{team}/projects/{project}/discussion', Posts::class)->name('teams.projects.discussion');
+    Route::get('teams/{team}/projects/{project}/discussion', ShowPosts::class)->name('teams.projects.discussion');
     Route::get('teams/{team}/projects', Projects::class)->name('teams.projects');
 });

@@ -34,6 +34,6 @@ class Project extends Model
      */
     public function posts(): HasMany
     {
-        return $this->hasMany(Post::class)->latest();
+        return $this->hasMany(Post::class)->with(['user', 'comments'])->latest();
     }
 }
