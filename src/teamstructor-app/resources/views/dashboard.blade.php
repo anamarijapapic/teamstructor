@@ -38,13 +38,13 @@
                                                         </p>
                                                         <div class="text-sm text-gray-500 truncate dark:text-gray-400">
                                                             {{ __('Owner:') }}
-                                                            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800"
+                                                            <img class="w-10 h-10 border-2 border-white rounded-full object-cover dark:border-gray-800"
                                                                 src="{{ $team->owner->profile_photo_url }}"
                                                                 title="{{ $team->owner->name }}" alt="">
                                                             {{ __('Members:') }}
                                                             <div class="flex -space-x-4">
                                                                 @forelse ($team->users as $member)
-                                                                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800"
+                                                                    <img class="w-10 h-10 border-2 border-white rounded-full object-cover dark:border-gray-800"
                                                                         src="{{ $member->profile_photo_url }}"
                                                                         title="{{ $member->name }}" alt="">
                                                                 @empty
@@ -83,13 +83,13 @@
                                                         </p>
                                                         <div class="text-sm text-gray-500 truncate dark:text-gray-400">
                                                             {{ __('Owner:') }}
-                                                            <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800"
+                                                            <img class="w-10 h-10 border-2 border-white rounded-full object-cover dark:border-gray-800"
                                                                 src="{{ $team->owner->profile_photo_url }}"
                                                                 title="{{ $team->owner->name }}" alt="">
                                                             {{ __('Members:') }}
                                                             <div class="flex -space-x-4">
                                                                 @forelse ($team->users as $member)
-                                                                    <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800"
+                                                                    <img class="w-10 h-10 border-2 border-white rounded-full object-cover dark:border-gray-800"
                                                                         src="{{ $member->profile_photo_url }}"
                                                                         title="{{ $member->name }}" alt="">
                                                                 @empty

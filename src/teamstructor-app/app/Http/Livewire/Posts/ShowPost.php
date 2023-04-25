@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Posts;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
@@ -74,6 +75,7 @@ class ShowPost extends Component
     public function destroy()
     {
         if ($this->postId) {
+            Comment::where('post_id', $this->postId)->delete();
             Post::where('id', $this->postId)->delete();
 
             $this->emit('postDeleted');
