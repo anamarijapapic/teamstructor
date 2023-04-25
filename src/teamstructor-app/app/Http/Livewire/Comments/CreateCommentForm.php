@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Comments;
 
-use App\Models\Post;
 use App\Models\Comment;
-use Livewire\Component;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\InteractsWithBanner;
+use Livewire\Component;
 
 class CreateCommentForm extends Component
 {
