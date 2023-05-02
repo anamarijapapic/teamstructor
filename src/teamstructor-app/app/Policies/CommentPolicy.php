@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Post;
+use App\Models\Comment;
 use App\Models\User;
 
-class PostPolicy
+class CommentPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,9 +18,9 @@ class PostPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Post $post): bool
+    public function view(User $user, Comment $comment): bool
     {
-        return $user->belongsToTeam($post->project->team());
+        return $user->belongsToTeam($comment->post->project->team());
     }
 
     /**
@@ -34,25 +34,26 @@ class PostPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Post $post): bool
+    public function update(User $user, Comment $comment): bool
     {
-        return $post->user->id == $user->id;
+        return $comment->user->id == $user->id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Post $post): bool
+    public function delete(User $user, Comment $comment): bool
     {
-        return $user->ownsTeam($post->project->team) ||
-            $user->ownsProject($post->project) ||
-            $post->user->id == $user->id;
+        return $user->ownsTeam($comment->post->project->team) ||
+            $user->ownsProject($comment->post->project) ||
+            $comment->post->user->id == $user->id ||
+            $comment->user->id == $user->id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Post $post): bool
+    public function restore(User $user, Comment $comment): bool
     {
         return false;
     }
@@ -60,7 +61,7 @@ class PostPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Post $post): bool
+    public function forceDelete(User $user, Comment $comment): bool
     {
         return false;
     }
