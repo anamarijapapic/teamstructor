@@ -72,13 +72,17 @@
                             </svg>
                         </a>
                         <div class="flex mt-3 mb-3">
-                            <x-secondary-button wire:click="edit({{ $project->id }})" wire:loading.attr="disabled">
-                                {{ __('Edit Project') }}
-                            </x-secondary-button>
-                            <x-danger-button class="ml-2" wire:click="confirmDeletion({{ $project->id }})"
-                                wire:loading.attr="disabled">
-                                {{ __('Delete Project') }}
-                            </x-danger-button>
+                            @can('update', $project)
+                                <x-secondary-button wire:click="edit({{ $project->id }})" wire:loading.attr="disabled">
+                                    {{ __('Edit Project') }}
+                                </x-secondary-button>
+                            @endcan
+                            @can('delete', $project)
+                                <x-danger-button class="ml-2" wire:click="confirmDeletion({{ $project->id }})"
+                                    wire:loading.attr="disabled">
+                                    {{ __('Delete Project') }}
+                                </x-danger-button>
+                            @endcan
                         </div>
                     </div>
                 @empty

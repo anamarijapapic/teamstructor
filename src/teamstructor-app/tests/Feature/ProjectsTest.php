@@ -17,7 +17,7 @@ class ProjectsTest extends TestCase
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
-        $component = Livewire::test(Projects::class, ['team' => $user->fresh()->personalTeam()->id]);
+        $component = Livewire::test(Projects::class, ['team' => $user->fresh()->personalTeam()]);
 
         $component->assertStatus(200);
     }
@@ -33,7 +33,7 @@ class ProjectsTest extends TestCase
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
-        Livewire::test(Projects::class, ['team' => $user->fresh()->personalTeam()->id])
+        Livewire::test(Projects::class, ['team' => $user->fresh()->personalTeam()])
             ->set([
                 'name' => 'Test project name',
                 'description' => 'Test project description',
@@ -47,7 +47,7 @@ class ProjectsTest extends TestCase
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
-        Livewire::test(Projects::class, ['team' => $user->fresh()->personalTeam()->id])
+        Livewire::test(Projects::class, ['team' => $user->fresh()->personalTeam()])
             ->set([
                 'name' => '',
                 'description' => '',

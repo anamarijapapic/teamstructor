@@ -4,27 +4,25 @@ namespace App\Http\Livewire\Projects;
 
 use App\Models\Project;
 use App\Models\Team;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class Projects extends Component
 {
+    use AuthorizesRequests;
     use InteractsWithBanner;
 
     public $projects;
 
-    public $project_id;
+    public $projectId;
 
     public $name;
 
     public $description;
 
-    public $team;
-
-    public $team_id;
-
-    public $user_id;
+    public Team $team;
 
     public $creatingOrEditingProject = false;
 
@@ -37,15 +35,8 @@ class Projects extends Component
         'description' => 'required',
     ];
 
-    public function mount($team)
-    {
-        $this->team_id = $team;
-    }
-
     public function render()
     {
-        $this->team = Team::findOrFail($this->team_id);
-
         $this->projects = $this->team->projects;
 
         return view('livewire.projects.projects');
@@ -62,25 +53,28 @@ class Projects extends Component
         $this->validate();
 
         Project::updateOrCreate(
-            ['id' => $this->project_id],
+            ['id' => $this->projectId],
             [
                 'name' => $this->name,
                 'description' => $this->description,
-                'team_id' => $this->team_id,
+                'team_id' => $this->team->id,
                 'user_id' => Auth::user()->id,
             ]
         );
 
-        $this->banner($this->project_id ? 'Project updated successfully.' : 'Project created successfully.');
+        $this->banner($this->projectId ? 'Project updated successfully.' : 'Project created successfully.');
 
         $this->creatingOrEditingProject = false;
         $this->resetInputFields();
     }
 
-    public function edit($projectId)
+    public function edit($id)
     {
-        $project = Project::findOrFail($projectId);
-        $this->project_id = $projectId;
+        $project = Project::findOrFail($id);
+
+        $this->authorize('update', $project);
+
+        $this->projectId = $id;
         $this->name = $project->name;
         $this->description = $project->description;
 
@@ -96,16 +90,20 @@ class Projects extends Component
         $this->confirmingProjectDeletion = false;
     }
 
-    public function confirmDeletion($projectId)
+    public function confirmDeletion($id)
     {
+        $project = Project::findOrFail($id);
+
+        $this->authorize('delete', $project);
+
         $this->confirmingProjectDeletion = true;
 
-        $this->projectIdBeingDeleted = $projectId;
+        $this->projectIdBeingDeleted = $id;
     }
 
     private function resetInputFields()
     {
-        $this->project_id = '';
+        $this->projectId = '';
         $this->name = '';
         $this->description = '';
     }

@@ -39,7 +39,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project): bool
     {
-        return $user->ownsTeam($project->team()) || $user->ownsProject($project);
+        return $user->ownsTeam($project->team) || $user->ownsProject($project);
     }
 
     /**
@@ -47,7 +47,7 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project): bool
     {
-        return $user->ownsTeam($project->team()) || $user->ownsProject($project);
+        return $user->ownsTeam($project->team) || $user->ownsProject($project);
     }
 
     /**
