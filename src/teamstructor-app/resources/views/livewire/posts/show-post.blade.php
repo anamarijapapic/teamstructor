@@ -2,32 +2,38 @@
     <article
         class="pt-6 pb-8 lg:pt-12 lg:pb-12 mx-auto mb-6 w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
         <header class="mb-4 lg:mb-6 not-format">
-            <button id="dropdownPost{{ $post->id }}Button" data-dropdown-toggle="dropdownPost{{ $post->id }}"
-                class="inline-flex items-center float-right p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                type="button">
-                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
-                    </path>
-                </svg>
-                <span class="sr-only">{{ __('Post Settings') }}</span>
-            </button>
-            <!-- Dropdown menu -->
-            <div id="dropdownPost{{ $post->id }}"
-                class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                    aria-labelledby="dropdownMenuIconHorizontalButton">
-                    <li>
-                        <a href="#" wire:click.prevent="edit({{ $post->id }})"
-                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Edit') }}</a>
-                    </li>
-                    <li>
-                        <a href="#" wire:click.prevent="delete({{ $post->id }})"
-                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Delete') }}</a>
-                    </li>
-                </ul>
-            </div>
+            @canany(['update', 'delete'], $post)
+                <button id="dropdownPost{{ $post->id }}Button" data-dropdown-toggle="dropdownPost{{ $post->id }}"
+                    class="inline-flex items-center float-right p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    type="button">
+                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                        </path>
+                    </svg>
+                    <span class="sr-only">{{ __('Post Settings') }}</span>
+                </button>
+                <!-- Dropdown menu -->
+                <div id="dropdownPost{{ $post->id }}"
+                    class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                        aria-labelledby="dropdownMenuIconHorizontalButton">
+                        @can('update', $post)
+                            <li>
+                                <a href="#" wire:click.prevent="edit({{ $post->id }})"
+                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Edit') }}</a>
+                            </li>
+                        @endcan
+                        @can('delete', $post)
+                            <li>
+                                <a href="#" wire:click.prevent="delete({{ $post->id }})"
+                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Delete') }}</a>
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+            @endcanany
             <address class="flex items-center mb-6 not-italic">
                 <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                     <img class="mr-4 w-16 h-16 rounded-full object-cover" src="{{ $post->user->profile_photo_url }}"

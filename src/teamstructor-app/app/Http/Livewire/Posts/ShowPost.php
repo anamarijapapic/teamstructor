@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Posts;
 
 use App\Models\Comment;
 use App\Models\Post;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class ShowPost extends Component
 {
+    use AuthorizesRequests;
     use InteractsWithBanner;
 
     public $post;
@@ -38,6 +40,9 @@ class ShowPost extends Component
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+
+        $this->authorize('update', $post);
+
         $this->postId = $id;
         $this->title = $post->title;
         $this->content = $post->content;
