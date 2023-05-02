@@ -6,7 +6,10 @@
                     <img class="mr-2 w-6 h-6 rounded-full object-cover" src="{{ $comment->user->profile_photo_url }}"
                         alt="{{ $comment->user->name }}">{{ $comment->user->name }}
                 </p>
-                <p class="text-sm text-gray-600 dark:text-gray-400">{{ $comment->created_at->diffForHumans() }}</p>
+                <p class="mr-3 text-sm text-gray-600 dark:text-gray-400">{{ $comment->created_at->diffForHumans() }}</p>
+                @if ($comment->updated_at != $comment->created_at)
+                    <p class="text-sm text-gray-400 dark:text-gray-500">{{ __('Edited') }}</p>
+                @endif
             </div>
             <button id="dropdownComment{{ $comment->id }}Button"
                 data-dropdown-toggle="dropdownComment{{ $comment->id }}"
@@ -26,11 +29,11 @@
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownMenuIconHorizontalButton">
                     <li>
-                        <a href="#"
+                        <a href="#" wire:click.prevent="edit({{ $comment->id }})"
                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Edit') }}</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="#" wire:click.prevent="delete({{ $comment->id }})"
                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Delete') }}</a>
                     </li>
                 </ul>
@@ -38,4 +41,51 @@
         </footer>
         <p class="text-gray-500 dark:text-gray-400">{{ $comment->content }}</p>
     </article>
+
+    <x-dialog-modal wire:model="openEditModal">
+        <x-slot name="title">
+            {{ __('Comment Information') }}
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="mt-4">
+                <x-label for="content" value="{{ __('Content') }}" />
+                <textarea id="content" rows="3"
+                    class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                    wire:model.defer="content">
+                </textarea>
+                <x-input-error for="content" class="mt-2" />
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-secondary-button wire:click="$toggle('openEditModal')" wire:loading.attr="disabled">
+                {{ __('Nevermind') }}
+            </x-secondary-button>
+
+            <x-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
+                {{ __('Save') }}
+            </x-button>
+        </x-slot>
+    </x-dialog-modal>
+
+    <x-confirmation-modal wire:model="openDeleteModal">
+        <x-slot name="title">
+            {{ __('Delete Comment') }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Are you sure you want to delete comment?') }}
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-secondary-button wire:click="$toggle('openDeleteModal')" wire:loading.attr="disabled">
+                {{ __('Nevermind') }}
+            </x-secondary-button>
+
+            <x-danger-button class="ml-2" wire:click="destroy" wire:loading.attr="disabled">
+                {{ __('Delete Comment') }}
+            </x-danger-button>
+        </x-slot>
+    </x-confirmation-modal>
 </div>

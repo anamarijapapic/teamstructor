@@ -38,6 +38,9 @@
                         <p class="text-base font-light text-gray-500 dark:text-gray-400">
                             {{ $post->created_at->diffForHumans() }}
                         </p>
+                        @if ($post->updated_at != $post->created_at)
+                            <p class="text-base font-light text-gray-400 dark:text-gray-500">{{ __('Edited') }}</p>
+                        @endif
                     </div>
                 </div>
             </address>

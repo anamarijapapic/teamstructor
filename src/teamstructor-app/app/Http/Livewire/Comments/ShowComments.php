@@ -11,6 +11,7 @@ class ShowComments extends Component
 
     protected $listeners = [
         'commentAdded' => '$refresh',
+        'commentDeleted' => '$refresh',
     ];
 
     public function render()
