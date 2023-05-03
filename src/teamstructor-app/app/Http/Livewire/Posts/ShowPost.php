@@ -72,6 +72,9 @@ class ShowPost extends Component
     public function delete($id)
     {
         $post = Post::findOrFail($id);
+
+        $this->authorize('delete', $post);
+
         $this->postId = $id;
 
         $this->openDeleteModal = true;
