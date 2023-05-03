@@ -28,6 +28,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('teams/{team}/projects/{project}/discussion', ShowPosts::class)->name('teams.projects.discussion');
-    Route::get('teams/{team}/projects', Projects::class)->name('teams.projects');
+    Route::get('/teams/{team}/projects/{project}/discussion', ShowPosts::class)->name('teams.projects.discussion');
+    Route::get('/teams/{team}/projects', Projects::class)->name('teams.projects');
 });
