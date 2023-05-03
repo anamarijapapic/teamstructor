@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\Comments;
 
 use App\Models\Comment;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class ShowComment extends Component
 {
+    use AuthorizesRequests;
     use InteractsWithBanner;
 
     public Comment $comment;
