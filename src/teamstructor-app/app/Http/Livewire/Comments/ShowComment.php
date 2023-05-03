@@ -34,6 +34,9 @@ class ShowComment extends Component
     public function edit($id)
     {
         $comment = Comment::findOrFail($id);
+
+        $this->authorize('update', $comment);
+
         $this->commentId = $id;
         $this->content = $comment->content;
 
@@ -60,7 +63,10 @@ class ShowComment extends Component
 
     public function delete($id)
     {
-        $post = Comment::findOrFail($id);
+        $comment = Comment::findOrFail($id);
+
+        $this->authorize('delete', $comment);
+
         $this->commentId = $id;
 
         $this->openDeleteModal = true;
