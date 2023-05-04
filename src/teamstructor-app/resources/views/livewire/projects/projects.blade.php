@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <nav class="flex" aria-label="Breadcrumb">
+        <nav class="flex" aria-label="breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
                     <span
@@ -49,7 +49,6 @@
                 </svg>
                 {{ __('Add Project') }}
             </x-button>
-
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 @forelse ($projects as $project)
