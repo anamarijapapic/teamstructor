@@ -6,7 +6,7 @@ COPY --from=mlocati/php-extension-installer:1.4.8 /usr/bin/install-php-extension
 
 # install the PHP extensions we need
 
-RUN install-php-extensions zip gd xdebug opcache pdo_mysql redis bcmath
+RUN install-php-extensions zip gd xdebug opcache pdo_mysql redis bcmath exif
 
 # install PHP composer
 

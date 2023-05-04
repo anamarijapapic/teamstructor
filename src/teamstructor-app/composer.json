@@ -12,7 +12,8 @@
         "laravel/sanctum": "^3.2",
         "laravel/telescope": "^4.14",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "^2.11"
+        "livewire/livewire": "^2.11",
+        "spatie/laravel-medialibrary": "^10.0.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",
