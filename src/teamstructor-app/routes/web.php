@@ -2,7 +2,7 @@
 
 use App\Http\Livewire\Media\ShowResources;
 use App\Http\Livewire\Posts\ShowPosts;
-use App\Http\Livewire\Projects\Projects;
+use App\Http\Livewire\Projects\ShowProjects;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +29,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/teams/{team}/projects', Projects::class)->name('teams.projects');
+    Route::get('/teams/{team}/projects', ShowProjects::class)->name('teams.projects');
     Route::get('/teams/{team}/projects/{project}/discussion', ShowPosts::class)->name('teams.projects.discussion');
     Route::get('/teams/{team}/projects/{project}/resources', ShowResources::class)->name('teams.projects.resources');
 });

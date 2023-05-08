@@ -13,7 +13,7 @@ class ShowPost extends Component
     use AuthorizesRequests;
     use InteractsWithBanner;
 
-    public $post;
+    public Post $post;
 
     public $postId;
 
