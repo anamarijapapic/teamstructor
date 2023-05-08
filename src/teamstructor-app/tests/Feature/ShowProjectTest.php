@@ -2,14 +2,14 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\Projects\Projects;
+use App\Http\Livewire\Projects\ShowProject;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
 
-class ProjectsTest extends TestCase
+class ShowProjectTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -17,43 +17,14 @@ class ProjectsTest extends TestCase
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
-        $component = Livewire::test(Projects::class, ['team' => $user->currentTeam]);
+        $project = Project::factory()->create([
+            'team_id' => $user->currentTeam,
+            'user_id' => $user,
+        ]);
+
+        $component = Livewire::test(ShowProject::class, ['project' => $project]);
 
         $component->assertStatus(200);
-    }
-
-    public function test_projects_page_contains_livewire_component(): void
-    {
-        $this->actingAs($user = User::factory()->withPersonalTeam()->create());
-
-        $this->get('/teams/'.$user->currentTeam->id.'/projects')->assertSeeLivewire(Projects::class);
-    }
-
-    public function test_projects_can_be_created(): void
-    {
-        $this->actingAs($user = User::factory()->withPersonalTeam()->create());
-
-        Livewire::test(Projects::class, ['team' => $user->currentTeam])
-            ->set([
-                'name' => 'Test project name',
-                'description' => 'Test project description',
-            ])
-            ->call('store');
-
-        $this->assertTrue(Project::where('name', 'Test project name')->exists());
-    }
-
-    public function test_valid_input_must_be_provided_before_project_can_be_created(): void
-    {
-        $this->actingAs($user = User::factory()->withPersonalTeam()->create());
-
-        Livewire::test(Projects::class, ['team' => $user->currentTeam])
-            ->set([
-                'name' => '',
-                'description' => '',
-            ])
-            ->call('store')
-            ->assertHasErrors(['name', 'description']);
     }
 
     public function test_projects_can_be_updated(): void
@@ -69,15 +40,16 @@ class ProjectsTest extends TestCase
 
         $this->assertTrue(Project::where('name', 'Test project name')->exists());
 
-        Livewire::test(Projects::class, ['team' => $user->currentTeam])
+        Livewire::test(ShowProject::class, ['project' => $project])
             ->call('edit', $project->id)
-            ->assertSet('creatingOrEditingProject', true)
+            ->assertSet('projectId', $project->id)
+            ->assertSet('openEditModal', true)
             ->set([
-                'projectId' => $project->id,
                 'name' => 'Updated project name',
             ])
-            ->call('store')
-            ->assertSet('creatingOrEditingProject', false);
+            ->call('update')
+            ->assertEmitted('projectUpdated')
+            ->assertSet('openEditModal', false);
 
         $this->assertTrue(Project::where('name', 'Test project name')->doesntExist());
         $this->assertTrue(Project::where('name', 'Updated project name')->exists());
@@ -102,7 +74,7 @@ class ProjectsTest extends TestCase
 
         $this->actingAs($otherUser);
 
-        Livewire::test(Projects::class, ['team' => $user->currentTeam])
+        Livewire::test(ShowProject::class, ['project' => $project])
             ->call('edit', $project->id)
             ->assertForbidden();
     }
@@ -120,14 +92,13 @@ class ProjectsTest extends TestCase
 
         $this->assertTrue(Project::where('name', 'Test project name')->exists());
 
-        Livewire::test(Projects::class, ['team' => $user->currentTeam])
-            ->call('confirmDeletion', $project->id)
-            ->assertSet('confirmingProjectDeletion', true)
-            ->set([
-                'projectIdBeingDeleted' => $project->id,
-            ])
-            ->call('delete')
-            ->assertSet('confirmingProjectDeletion', false);
+        Livewire::test(ShowProject::class, ['project' => $project])
+            ->call('delete', $project->id)
+            ->assertSet('projectId', $project->id)
+            ->assertSet('openDeleteModal', true)
+            ->call('destroy')
+            ->assertEmitted('projectDeleted')
+            ->assertSet('openDeleteModal', false);
 
         $this->assertTrue(Project::where('name', 'Test project name')->doesntExist());
     }
@@ -151,8 +122,8 @@ class ProjectsTest extends TestCase
 
         $this->actingAs($otherUser);
 
-        Livewire::test(Projects::class, ['team' => $user->currentTeam])
-            ->call('confirmDeletion', $project->id)
+        Livewire::test(ShowProject::class, ['project' => $project])
+            ->call('delete', $project->id)
             ->assertForbidden();
     }
 }
