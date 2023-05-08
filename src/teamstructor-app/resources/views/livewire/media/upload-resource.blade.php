@@ -1,8 +1,8 @@
 <div>
     <form wire:submit.prevent="save">
-        <x-input type="file" class="w-full" wire:model="resource" />
+        <x-input type="file" class="w-full bg-white" wire:model="resource" />
 
-        <p wire:loading wire:target="resource">
+        <p class="mt-2" wire:loading wire:target="resource">
             <svg aria-hidden="true" role="status" class="inline w-4 h-4 mr-3 text-gray-200 animate-spin"
                 viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

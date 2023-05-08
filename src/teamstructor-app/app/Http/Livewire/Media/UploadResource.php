@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Media;
 
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class UploadResource extends Component
 {
+    use InteractsWithBanner;
     use WithFileUploads;
 
     public Project $project;
@@ -30,5 +32,10 @@ class UploadResource extends Component
             ->addMedia($this->resource)
             ->withCustomProperties(['user_id' => Auth::user()->id])
             ->toMediaCollection();
+
+        $this->emit('resourceAdded');
+        $this->banner('Resource uploaded successfully.');
+
+        $this->reset(['resource']);
     }
 }

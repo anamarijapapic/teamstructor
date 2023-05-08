@@ -12,6 +12,11 @@ class ShowResources extends Component
 
     public Project $project;
 
+    protected $listeners = [
+        'resourceAdded' => '$refresh',
+        'resourceDeleted' => '$refresh',
+    ];
+
     public function render()
     {
         return view('livewire.media.show-resources', [
