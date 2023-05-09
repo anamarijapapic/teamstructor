@@ -31,6 +31,19 @@
                 </svg>
                 {{ __('Details') }}
             </x-secondary-button>
+
+            {{-- @can('update', $resource) --}}
+            <x-secondary-button class="mb-3" wire:click="edit({{ $resource->id }})" wire:loading.attr="disabled">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    stroke-width="1.5" class="w-4 h-4 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125">
+                    </path>
+                </svg>
+                {{ __('Edit') }}
+            </x-secondary-button>
+            {{-- @endcan --}}
+
             {{-- @can('delete', $resource) --}}
             <x-danger-button wire:click="delete({{ $resource->id }})" wire:loading.attr="disabled">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -64,6 +77,30 @@
         </div>
         <div data-popper-arrow></div>
     </div>
+
+    <x-dialog-modal wire:model="openEditModal">
+        <x-slot name="title">
+            {{ __('Resource Information') }}
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="mt-4">
+                <x-label for="name" value="{{ __('Name') }}" />
+                <x-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="name" />
+                <x-input-error for="name" class="mt-2" />
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-secondary-button wire:click="$toggle('openEditModal')" wire:loading.attr="disabled">
+                {{ __('Nevermind') }}
+            </x-secondary-button>
+
+            <x-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
+                {{ __('Save') }}
+            </x-button>
+        </x-slot>
+    </x-dialog-modal>
 
     <x-confirmation-modal wire:model="openDeleteModal">
         <x-slot name="title">

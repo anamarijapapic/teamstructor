@@ -17,7 +17,19 @@ class ShowResource extends Component
 
     public $resourceId;
 
+    public $name;
+
+    public $extension;
+
+    public $openEditModal;
+
     public $openDeleteModal;
+
+    protected $listeners = ['resourceUpdated' => '$refresh'];
+
+    protected $rules = [
+        'name' => 'required',
+    ];
 
     public function mount()
     {
@@ -34,6 +46,39 @@ class ShowResource extends Component
         return response()->download($this->resource->getPath(), $this->resource->file_name);
     }
 
+    public function edit($id)
+    {
+        $resource = Media::findOrFail($id);
+
+        // $this->authorize('update', $resource);
+
+        $this->resourceId = $id;
+        $this->name = $resource->name;
+        $this->extension = $resource->extension;
+
+        $this->openEditModal = true;
+    }
+
+    public function update()
+    {
+        $this->validate();
+
+        if ($this->resourceId) {
+            $resource = Media::find($this->resourceId);
+
+            $resource->name = $this->name;
+            $resource->file_name = strtolower(str_replace(['#', '/', '\\', ' '], '-', $this->name)).'.'.$this->extension;
+            $resource->save();
+
+            $this->emitSelf('resourceUpdated');
+            $this->banner('Resource updated successfully.');
+
+            $this->openEditModal = false;
+
+            $this->reset(['name', 'extension']);
+        }
+    }
+
     public function delete($id)
     {
         $resource = Media::findOrFail($id);
@@ -48,7 +93,9 @@ class ShowResource extends Component
     public function destroy()
     {
         if ($this->resourceId) {
-            Media::where('id', $this->resourceId)->delete();
+            $project = Media::find($this->resourceId)->model;
+
+            $project->deleteMedia($this->resourceId);
 
             $this->emit('resourceDeleted');
             $this->banner('Resource deleted successfully.');
