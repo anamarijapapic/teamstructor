@@ -56,20 +56,22 @@ You should have the following installed with respective minimal versions:
 2. Clone the repo: `git clone git@github.com:anamarijapapic/teamstructor.git`
 3. Copy `.env.example` to `.env` and edit config if needed
 4. Copy `src/teamstructor-app/.env.example` to `src/teamstructor-app/.env` and edit config if needed
-5. Install all JS dependencies by running: `npm install`
-6. Install JS dependencies by running: `npm install` from `src/teamstructor-app/` directory
-7. Append the line `127.0.0.1   teamstructor.test` to your `/etc/hosts` file
-8. Generate your local certificate (setup HTTPS) by running: `npm run addcert`
-9. Do a initial build of the website assets by running: `npm run build` from `src/teamstructor-app/` directory
-10. Build and start the local web server for the first time: `docker-compose up`
-11. Install Composer dependencies: `docker exec -it teamstructor_php composer install`
-12. Generate application key: `docker exec -it teamstructor_php php artisan key:generate`
-13. Create symbolic link for storage: `docker exec -it teamstructor_php php artisan storage:link`
+5. Use Node version defined in `.nvmrc` file by running: `nvm use`
+6. Install all JS dependencies by running: `npm install`
+7. Install JS dependencies by running: `npm install` from `src/teamstructor-app/` directory
+8. Append the line `127.0.0.1   teamstructor.test` to your `/etc/hosts` file
+9. Generate your local certificate (setup HTTPS) by running: `npm run addcert`
+10. Do a initial build of the website assets by running: `npm run build` from `src/teamstructor-app/` directory
+11. Check that Docker Desktop is running, then build and start the local web server for the first time: `docker-compose up`
+12. Install Composer dependencies: `docker exec -it teamstructor_php composer install`
+13. Generate application key: `docker exec -it teamstructor_php php artisan key:generate`
+14. Create symbolic link for storage: `docker exec -it teamstructor_php php artisan storage:link`
   - If needed alter folder permissions for `src/teamstructor-app/storage` folder: `sudo chmod o+w ./storage/ -R` from `src/teamstructor-app/` directory
-14. Run database migrations: `docker exec -it teamstructor_php php artisan migrate`
-15. Seed the database: `docker exec -it teamstructor_php php artisan db:seed`
-16. Open [https://teamstructor.test/](https://teamstructor.test/) in your browser
-17. Work with the code in the directory.
+15. Cache configuration files: `docker exec -it teamstructor_php php artisan config:cache`
+  - If needed alter folder permissions for `src/teamstructor-app/bootstrap` folder: `sudo chmod -R 777 ./bootstrap/` from `src/teamstructor-app/` directory
+16. Run database migrations & seed the database: `docker exec -it teamstructor_php php artisan migrate:fresh --seed`
+17. Open [https://teamstructor.test/](https://teamstructor.test/) in your browser
+18. Work with the code in the directory.
 
 ### Working With the 'dev' Environment
 
