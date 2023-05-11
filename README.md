@@ -54,8 +54,8 @@ You should have the following installed with respective minimal versions:
 
 1. Install and update all the requirements above
 2. Clone the repo: `git clone git@github.com:anamarijapapic/teamstructor.git`
-3. Copy `.env.example` to `.env` and edit config if needed
-4. Copy `src/teamstructor-app/.env.example` to `src/teamstructor-app/.env` and edit config if needed
+3. Copy `.env.example` to `.env`
+4. Copy `src/teamstructor-app/.env.example` to `src/teamstructor-app/.env`
 5. Use Node version defined in `.nvmrc` file by running: `nvm use`
 6. Install all JS dependencies by running: `npm install`
 7. Install JS dependencies by running: `npm install` from `src/teamstructor-app/` directory
@@ -66,12 +66,13 @@ You should have the following installed with respective minimal versions:
 12. Install Composer dependencies: `docker exec -it teamstructor_php composer install`
 13. Generate application key: `docker exec -it teamstructor_php php artisan key:generate`
 14. Create symbolic link for storage: `docker exec -it teamstructor_php php artisan storage:link`
-  - If needed alter folder permissions for `src/teamstructor-app/storage` folder: `sudo chmod o+w ./storage/ -R` from `src/teamstructor-app/` directory
-15. Cache configuration files: `docker exec -it teamstructor_php php artisan config:cache`
-  - If needed alter folder permissions for `src/teamstructor-app/bootstrap` folder: `sudo chmod -R 777 ./bootstrap/` from `src/teamstructor-app/` directory
-16. Run database migrations & seed the database: `docker exec -it teamstructor_php php artisan migrate:fresh --seed`
-17. Open [https://teamstructor.test/](https://teamstructor.test/) in your browser
-18. Work with the code in the directory.
+15. Alter folder permissions for `src/teamstructor-app/storage` & `src/teamstructor-app/bootstrap` folders: `sudo chmod -R 777 src/teamstructor-app/storage/ src/teamstructor-app/bootstrap/`
+16. Open [MinIO Dashboard](http://localhost:9000/) in your browser and login using default root credentials `minioadmin:minioadmin`
+ - Create a bucket with bucket name `teamstructor-bucket` and change its access policy to `public`
+ - Create access key and copy access key value to `AWS_ACCESS_KEY_ID` and secret key value to `AWS_SECRET_ACCESS_KEY` defined in `src/teamstructor-app/.env`
+17. Run database migrations & seed the database: `docker exec -it teamstructor_php php artisan migrate:fresh --seed`
+18. Open [https://teamstructor.test/](https://teamstructor.test/) in your browser
+19. Work with the code in the directory.
 
 ### Working With the 'dev' Environment
 
