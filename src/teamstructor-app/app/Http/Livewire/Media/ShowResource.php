@@ -43,7 +43,7 @@ class ShowResource extends Component
 
     public function download()
     {
-        return response()->download($this->resource->getPath(), $this->resource->file_name);
+        return $this->resource;
     }
 
     public function edit($id)
@@ -67,7 +67,7 @@ class ShowResource extends Component
             $resource = Media::find($this->resourceId);
 
             $resource->name = $this->name;
-            $resource->file_name = strtolower(str_replace(['#', '/', '\\', ' '], '-', $this->name)).'.'.$this->extension;
+            $resource->file_name = str_replace(['#', '/', '\\', ' '], '-', $this->name).'.'.$this->extension;
             $resource->save();
 
             $this->emitSelf('resourceUpdated');

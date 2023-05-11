@@ -20,8 +20,10 @@
                 {{ __('Download') }}
             </x-button>
 
-            <x-secondary-button class="mb-3" data-popover-target="popover-hover-{{ $resource->id }}"
-                data-popover-placement="bottom" data-popover-trigger="hover" wire:loading.attr="disabled">
+            <a class="mb-3 inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150"
+                href="{{ $resource->getFullUrl() }}" target="_blank"
+                data-popover-target="popover-hover-{{ $resource->id }}" data-popover-placement="bottom"
+                data-popover-trigger="hover" wire:loading.attr="disabled">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     stroke-width="1.5" class="w-4 h-4 mr-2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -29,8 +31,8 @@
                     </path>
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
-                {{ __('Details') }}
-            </x-secondary-button>
+                {{ __('Preview') }}
+            </a>
 
             {{-- @can('update', $resource) --}}
             <x-secondary-button class="mb-3" wire:click="edit({{ $resource->id }})" wire:loading.attr="disabled">
@@ -65,11 +67,6 @@
         </div>
 
         <div class="px-3 py-2">
-            @if ($resource->type == 'image')
-                <div class="flex justify-center p-2">
-                    {{ $resource }}
-                </div>
-            @endif
             <p>{{ __('Uploaded:') }} {{ $resource->created_at->format('d.m.Y H:i:s') }}</p>
             <p>{{ __('Author:') }} {{ $author->name }}</p>
             <p>{{ __('Type:') }} {{ $resource->mime_type }}</p>

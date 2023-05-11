@@ -25,13 +25,15 @@ class UploadResource extends Component
     public function save()
     {
         $this->validate([
-            'resource' => 'required|file|max:102400', // (100MB max)
+            'resource' => 'required|file|max:12288', // (12MB max)
         ]);
 
         $this->project
-            ->addMedia($this->resource)
+            ->addMediaFromDisk('/livewire-tmp/'.$this->resource->getFilename())
+            ->usingFileName(str_replace(['#', '/', '\\', ' '], '-', $this->resource->getClientOriginalName()))
+            ->usingName(pathinfo($this->resource->getClientOriginalName(), PATHINFO_FILENAME))
             ->withCustomProperties(['user_id' => Auth::user()->id])
-            ->toMediaCollection();
+            ->toMediaCollection('default', 's3');
 
         $this->emit('resourceAdded');
         $this->banner('Resource uploaded successfully.');
