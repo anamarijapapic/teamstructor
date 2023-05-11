@@ -1,18 +1,16 @@
 version: "3.9"
 services:
   nginx:
-    container_name: teamstructor_nginx
     build: ./docker/nginx/
     ports:
       - 80:80
       - 443:443
     links:
-      - php
+      - teamstructor.test
     volumes:
       - ./src/teamstructor-app:/var/www/html:cached
 
-  php:
-    container_name: teamstructor_php
+  teamstructor.test:
     build: ./docker/php/
     expose:
       - 9000
@@ -27,7 +25,6 @@ services:
       - ./src/teamstructor-app:/var/www/html:cached
 
   db:
-    container_name: teamstructor_db
     platform: linux/x86_64
     image: mysql:5.7
     user: root
@@ -42,7 +39,6 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
 
   phpmyadmin:
-    container_name: teamstructor_phpmyadmin
     build: ./docker/phpmyadmin/
     ports:
       - 8080:80
@@ -52,7 +48,6 @@ services:
       PMA_HOST: db
 
   minio:
-    container_name: teamstructor_minio
     image: minio/minio
     ports:
       - 9000:9000
@@ -65,7 +60,6 @@ services:
     command: server /data --console-address :9001
 
   redis:
-    container_name: teamstructor_redis
     image: redis:alpine
     restart: unless-stopped
     ports:
@@ -73,7 +67,6 @@ services:
     # command: --loglevel verbose
 
   phpredisadmin:
-    container_name: teamstructor_phpredisadmin
     image: erikdubbelboer/phpredisadmin
     depends_on:
       - redis
@@ -86,7 +79,6 @@ services:
       - 8085:80
 
   mailhog:
-    container_name: teamstructor_mailhog
     platform: linux/x86_64
     image: mailhog/mailhog
     ports:

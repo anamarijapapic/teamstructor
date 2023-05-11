@@ -47,7 +47,7 @@ Teamstructor is a web application that serves as a teamwork platform. Users can 
 
 You should have the following installed with respective minimal versions:
 
-- [Docker](https://www.docker.com/community-edition) 18.06 bundled with docker-compose
+- [Docker Desktop](https://www.docker.com/) bundled with docker-compose
 - [NodeJS](https://nodejs.org/en/) 16.x LTS bundled with npm
 
 ### Running the Application
@@ -63,14 +63,14 @@ You should have the following installed with respective minimal versions:
 9. Generate your local certificate (setup HTTPS) by running: `npm run addcert`
 10. Do a initial build of the website assets by running: `npm run build` from `src/teamstructor-app/` directory
 11. Check that Docker Desktop is running, then build and start the local web server for the first time: `docker-compose up`
-12. Install Composer dependencies: `docker exec -it teamstructor_php composer install`
-13. Generate application key: `docker exec -it teamstructor_php php artisan key:generate`
-14. Create symbolic link for storage: `docker exec -it teamstructor_php php artisan storage:link`
+12. Install Composer dependencies: `docker-compose exec teamstructor.test composer install`
+13. Generate application key: `docker-compose exec teamstructor.test php artisan key:generate`
+14. Create symbolic link for storage: `docker-compose exec teamstructor.test php artisan storage:link`
 15. Alter folder permissions for `src/teamstructor-app/storage` & `src/teamstructor-app/bootstrap` folders: `sudo chmod -R 777 src/teamstructor-app/storage/ src/teamstructor-app/bootstrap/`
 16. Open [MinIO Dashboard](http://localhost:9000/) in your browser and login using default root credentials `minioadmin:minioadmin`
  - Create a bucket with bucket name `teamstructor-bucket` and change its access policy to `public`
  - Create access key and copy access key value to `AWS_ACCESS_KEY_ID` and secret key value to `AWS_SECRET_ACCESS_KEY` defined in `src/teamstructor-app/.env`
-17. Run database migrations & seed the database: `docker exec -it teamstructor_php php artisan migrate:fresh --seed`
+17. Run database migrations & seed the database: `docker-compose exec teamstructor.test php artisan migrate:fresh --seed`
 18. Open [https://teamstructor.test/](https://teamstructor.test/) in your browser
 19. Work with the code in the directory.
 
@@ -79,7 +79,7 @@ You should have the following installed with respective minimal versions:
 #### Laravel w/ Docker - Notes
 
 To run **Artisan** commands from terminal run command from repo root directory:  
-`docker exec -it teamstructor_php php artisan <command>`
+`docker-compose exec teamstructor.test php artisan <command>`
 
 #### Useful Docker Commands
 
