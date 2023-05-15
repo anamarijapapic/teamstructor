@@ -26,6 +26,8 @@ Teamstructor is a web application that serves as a teamwork platform. Users can 
 ![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)  
 ![Livewire](https://img.shields.io/badge/Livewire-4E56A6.svg?style=for-the-badge&logo=Livewire&logoColor=white)  
+![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white)
+![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0.svg?style=for-the-badge&logo=alpinedotjs&logoColor=black)  
 
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-6C78AF.svg?style=for-the-badge&logo=phpMyAdmin&logoColor=white)  
@@ -48,7 +50,7 @@ Teamstructor is a web application that serves as a teamwork platform. Users can 
 You should have the following installed with respective minimal versions:
 
 - [Docker Desktop](https://www.docker.com/) bundled with docker-compose
-- [NodeJS](https://nodejs.org/en/) 16.x LTS bundled with npm
+- [Node.js](https://nodejs.org/en/) 18.x LTS bundled with npm
 
 ### Running the Application
 
@@ -56,7 +58,7 @@ You should have the following installed with respective minimal versions:
 2. Clone the repo: `git clone git@github.com:anamarijapapic/teamstructor.git`
 3. Copy `.env.example` to `.env`
 4. Copy `src/teamstructor-app/.env.example` to `src/teamstructor-app/.env`
-5. Use Node version defined in `.nvmrc` file by running: `nvm use`
+5. Use Node.js version defined in `.nvmrc` file by running: `nvm use`
 6. Install all JS dependencies by running: `npm install`
 7. Install JS dependencies by running: `npm install` from `src/teamstructor-app/` directory
 8. Append the line `127.0.0.1   teamstructor.test` to your `/etc/hosts` file
