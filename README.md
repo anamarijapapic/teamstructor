@@ -43,7 +43,7 @@ Teamstructor is a web application that serves as a teamwork platform. Users can 
 
 ![Simple Database Model](https://user-images.githubusercontent.com/92815435/227921312-1d30b686-1ebc-4d18-ba05-4380bc21626a.png)
 
-## Getting started
+## Getting Started
 
 ### Requirements
 
@@ -69,7 +69,7 @@ You should have the following installed with respective minimal versions:
 13. Generate application key: `docker-compose exec teamstructor.test php artisan key:generate`
 14. Create symbolic link for storage: `docker-compose exec teamstructor.test php artisan storage:link`
 15. Alter folder permissions for `src/teamstructor-app/storage` & `src/teamstructor-app/bootstrap` folders: `sudo chmod -R 777 src/teamstructor-app/storage/ src/teamstructor-app/bootstrap/`
-16. Open [MinIO Dashboard](http://localhost:9000/) in your browser and login using default root credentials `minioadmin:minioadmin`
+16. Open [MinIO](https://min.io/) (AWS S3 compatible file storage service) available at http://localhost:9000/ in your browser and login using default root credentials `minioadmin:minioadmin`
  - Create a bucket with bucket name `teamstructor-bucket` and change its access policy to `public`
  - Create access key and copy access key value to `AWS_ACCESS_KEY_ID` and secret key value to `AWS_SECRET_ACCESS_KEY` defined in `src/teamstructor-app/.env`
 17. Run database migrations & seed the database: `docker-compose exec teamstructor.test php artisan migrate:fresh --seed`
@@ -78,10 +78,15 @@ You should have the following installed with respective minimal versions:
 
 ### Working With the 'dev' Environment
 
-#### Laravel w/ Docker - Notes
+#### Artisan Commands
 
-To run **Artisan** commands from terminal run command from repo root directory:  
+To run **Artisan** commands from terminal run command:  
 `docker-compose exec teamstructor.test php artisan <command>`
+
+#### Running Tests
+
+You can run tests by executing the `pest` command:  
+`docker-compose exec teamstructor.test ./vendor/bin/pest`
 
 #### Useful Docker Commands
 
