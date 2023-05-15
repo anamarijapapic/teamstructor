@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Media;
 
 use App\Models\Resource;
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class ShowResource extends Component
 {
+    use AuthorizesRequests;
     use InteractsWithBanner;
 
     public Resource $resource;
@@ -50,7 +52,7 @@ class ShowResource extends Component
     {
         $resource = Resource::findOrFail($id);
 
-        // $this->authorize('update', $resource);
+        $this->authorize('update', $resource);
 
         $this->resourceId = $id;
         $this->name = $resource->name;
@@ -83,7 +85,7 @@ class ShowResource extends Component
     {
         $resource = Resource::findOrFail($id);
 
-        // $this->authorize('delete', $resource);
+        $this->authorize('delete', $resource);
 
         $this->resourceId = $id;
 

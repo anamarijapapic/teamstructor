@@ -10,7 +10,6 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                 @forelse ($resources as $resource)
                     @livewire('media.show-resource', ['resource' => $resource], key($resource->id))
-                    {{-- {{ $resource->getFullUrl() }} --}}
                 @empty
                     {{ __('There are no resources yet in this project. Start uploading!') }}
                 @endforelse

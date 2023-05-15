@@ -20,7 +20,7 @@ class CommentPolicy
      */
     public function view(User $user, Comment $comment): bool
     {
-        return $user->belongsToTeam($comment->post->project->team());
+        return $user->belongsToTeam($comment->post->project->team);
     }
 
     /**

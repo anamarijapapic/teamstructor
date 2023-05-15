@@ -20,7 +20,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        return $user->belongsToTeam($post->project->team());
+        return $user->belongsToTeam($post->project->team);
     }
 
     /**
