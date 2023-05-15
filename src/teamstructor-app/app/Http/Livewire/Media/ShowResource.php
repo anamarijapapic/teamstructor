@@ -2,16 +2,16 @@
 
 namespace App\Http\Livewire\Media;
 
+use App\Models\Resource;
 use App\Models\User;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ShowResource extends Component
 {
     use InteractsWithBanner;
 
-    public Media $resource;
+    public Resource $resource;
 
     public $author;
 
@@ -48,7 +48,7 @@ class ShowResource extends Component
 
     public function edit($id)
     {
-        $resource = Media::findOrFail($id);
+        $resource = Resource::findOrFail($id);
 
         // $this->authorize('update', $resource);
 
@@ -64,7 +64,7 @@ class ShowResource extends Component
         $this->validate();
 
         if ($this->resourceId) {
-            $resource = Media::find($this->resourceId);
+            $resource = Resource::find($this->resourceId);
 
             $resource->name = $this->name;
             $resource->file_name = str_replace(['#', '/', '\\', ' '], '-', $this->name).'.'.$this->extension;
@@ -81,7 +81,7 @@ class ShowResource extends Component
 
     public function delete($id)
     {
-        $resource = Media::findOrFail($id);
+        $resource = Resource::findOrFail($id);
 
         // $this->authorize('delete', $resource);
 
@@ -93,7 +93,7 @@ class ShowResource extends Component
     public function destroy()
     {
         if ($this->resourceId) {
-            $project = Media::find($this->resourceId)->model;
+            $project = Resource::find($this->resourceId)->model;
 
             $project->deleteMedia($this->resourceId);
 
