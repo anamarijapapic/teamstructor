@@ -1,20 +1,20 @@
 <div>
-    <article class="p-6 mb-6 text-base bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+    <article class="p-6 mb-6 text-base bg-white border-b border-gray-200">
         <footer class="flex justify-between items-center mb-2">
             <div class="flex items-center">
-                <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                <p class="inline-flex items-center mr-3 text-sm text-gray-900">
                     <img class="mr-2 w-6 h-6 rounded-full object-cover" src="{{ $comment->user->profile_photo_url }}"
                         alt="{{ $comment->user->name }}">{{ $comment->user->name }}
                 </p>
-                <p class="mr-3 text-sm text-gray-600 dark:text-gray-400">{{ $comment->created_at->diffForHumans() }}</p>
+                <p class="mr-3 text-sm text-gray-600">{{ $comment->created_at->diffForHumans() }}</p>
                 @if ($comment->updated_at != $comment->created_at)
-                    <p class="text-sm text-gray-400 dark:text-gray-500">{{ __('Edited') }}</p>
+                    <p class="text-sm text-gray-400">{{ __('Edited') }}</p>
                 @endif
             </div>
             @canany(['update', 'delete'], $comment)
                 <button id="dropdownComment{{ $comment->id }}Button"
                     data-dropdown-toggle="dropdownComment{{ $comment->id }}"
-                    class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50"
                     type="button">
                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -26,26 +26,25 @@
                 </button>
                 <!-- Dropdown menu -->
                 <div id="dropdownComment{{ $comment->id }}"
-                    class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownMenuIconHorizontalButton">
+                    class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow">
+                    <ul class="py-1 text-sm text-gray-700" aria-labelledby="dropdownMenuIconHorizontalButton">
                         @can('update', $comment)
                             <li>
                                 <a href="#" wire:click.prevent="edit({{ $comment->id }})"
-                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Edit') }}</a>
+                                    class="block py-2 px-4 hover:bg-gray-100">{{ __('Edit') }}</a>
                             </li>
                         @endcan
                         @can('delete', $comment)
                             <li>
                                 <a href="#" wire:click.prevent="delete({{ $comment->id }})"
-                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Delete') }}</a>
+                                    class="block py-2 px-4 hover:bg-gray-100">{{ __('Delete') }}</a>
                             </li>
                         @endcan
                     </ul>
                 </div>
             @endcanany
         </footer>
-        <p class="text-gray-500 dark:text-gray-400">{{ $comment->content }}</p>
+        <p class="text-gray-500">{{ $comment->content }}</p>
     </article>
 
     <x-dialog-modal wire:model="openEditModal">

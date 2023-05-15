@@ -1,10 +1,10 @@
 <div class="w-full">
     <article
-        class="pt-6 pb-8 lg:pt-12 lg:pb-12 mx-auto mb-6 w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+        class="pt-6 pb-8 lg:pt-12 lg:pb-12 mx-auto mb-6 w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue">
         <header class="mb-4 lg:mb-6 not-format">
             @canany(['update', 'delete'], $post)
                 <button id="dropdownPost{{ $post->id }}Button" data-dropdown-toggle="dropdownPost{{ $post->id }}"
-                    class="inline-flex items-center float-right p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    class="inline-flex items-center float-right p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50"
                     type="button">
                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -16,41 +16,40 @@
                 </button>
                 <!-- Dropdown menu -->
                 <div id="dropdownPost{{ $post->id }}"
-                    class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownMenuIconHorizontalButton">
+                    class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow">
+                    <ul class="py-1 text-sm text-gray-700" aria-labelledby="dropdownMenuIconHorizontalButton">
                         @can('update', $post)
                             <li>
                                 <a href="#" wire:click.prevent="edit({{ $post->id }})"
-                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Edit') }}</a>
+                                    class="block py-2 px-4 hover:bg-gray-100">{{ __('Edit') }}</a>
                             </li>
                         @endcan
                         @can('delete', $post)
                             <li>
                                 <a href="#" wire:click.prevent="delete({{ $post->id }})"
-                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('Delete') }}</a>
+                                    class="block py-2 px-4 hover:bg-gray-100">{{ __('Delete') }}</a>
                             </li>
                         @endcan
                     </ul>
                 </div>
             @endcanany
             <address class="flex items-center mb-6 not-italic">
-                <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                <div class="inline-flex items-center mr-3 text-sm text-gray-900">
                     <img class="mr-4 w-16 h-16 rounded-full object-cover" src="{{ $post->user->profile_photo_url }}"
                         alt="{{ $post->user->name }}">
                     <div>
                         <a href="#" rel="author"
-                            class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->user->name }}</a>
-                        <p class="text-base font-light text-gray-500 dark:text-gray-400">
+                            class="text-xl font-bold text-gray-900">{{ $post->user->name }}</a>
+                        <p class="text-base font-light text-gray-500">
                             {{ $post->created_at->diffForHumans() }}
                         </p>
                         @if ($post->updated_at != $post->created_at)
-                            <p class="text-base font-light text-gray-400 dark:text-gray-500">{{ __('Edited') }}</p>
+                            <p class="text-base font-light text-gray-400">{{ __('Edited') }}</p>
                         @endif
                     </div>
                 </div>
             </address>
-            <h1 class="mb-4 text-2xl font-semibold text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+            <h1 class="mb-4 text-2xl font-semibold text-gray-900 lg:mb-6 lg:text-4xl">
                 {{ $post->title }}
             </h1>
         </header>

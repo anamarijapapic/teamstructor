@@ -1,6 +1,6 @@
 <div>
     <div class="flex justify-between items-center mb-6">
-        <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+        <h2 class="text-lg lg:text-2xl font-bold text-gray-900">
             {{ __('Comments') }} ({{ $post->comments->count() }})</h2>
     </div>
 
