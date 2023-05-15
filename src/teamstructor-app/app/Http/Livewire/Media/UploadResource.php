@@ -29,9 +29,7 @@ class UploadResource extends Component
         ]);
 
         $this->project
-            ->addMediaFromDisk('/livewire-tmp/'.$this->resource->getFilename())
-            ->usingFileName(str_replace(['#', '/', '\\', ' '], '-', $this->resource->getClientOriginalName()))
-            ->usingName(pathinfo($this->resource->getClientOriginalName(), PATHINFO_FILENAME))
+            ->addMedia($this->resource)
             ->withCustomProperties(['user_id' => Auth::user()->id])
             ->toMediaCollection('default', 's3');
 
