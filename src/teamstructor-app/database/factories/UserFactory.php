@@ -70,4 +70,31 @@ class UserFactory extends Factory
             'ownedTeams'
         );
     }
+
+    /**
+     * Indicate that the user is administrator.
+     */
+    public function administrator(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => 'Admin Admin',
+                'email' => 'admin@teamstructor.test',
+                'is_administrator' => true,
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the user is 'Anamarija Papić'.
+     */
+    public function anamarijaPapic(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => 'Anamarija Papić',
+                'email' => 'anamarija@teamstructor.test',
+            ];
+        });
+    }
 }
