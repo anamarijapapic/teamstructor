@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Comment;
 use App\Models\Post;
-use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,20 +26,34 @@ class CommentFactory extends Factory
      */
     public function definition(): array
     {
-        $user = User::factory()->withPersonalTeam()->create();
-        $project = Project::factory()->create([
-            'team_id' => $user->currentTeam,
-            'user_id' => $user,
-        ]);
-        $post = Post::factory()->create([
-            'project_id' => $project,
-            'user_id' => $user,
-        ]);
-
         return [
-            'content' => $this->faker->sentence(10),
-            'post_id' => $post,
-            'user_id' => $user,
+            'content' => $this->faker->paragraph(),
+            'post_id' => Post::factory(),
+            'user_id' => User::factory(),
         ];
+    }
+
+    /**
+     * Indicate that the comment belongs to specific post.
+     */
+    public function belongsToPost(Post $post): static
+    {
+        return $this->state(function (array $attributes) use ($post) {
+            return [
+                'post_id' => $post,
+            ];
+        });
+    }
+
+    /**
+     * Indicate that user is comment author.
+     */
+    public function belongsToUser(User $user): static
+    {
+        return $this->state(function (array $attributes) use ($user) {
+            return [
+                'user_id' => $user,
+            ];
+        });
     }
 }
