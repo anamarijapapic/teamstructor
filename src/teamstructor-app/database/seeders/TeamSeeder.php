@@ -15,7 +15,7 @@ class TeamSeeder extends Seeder
         $users = User::all()->except(1);
 
         foreach ($users as $user) {
-            $otherUsers = $users->except($user->id)->random(5);
+            $otherUsers = $users->except($user->id)->random(4);
 
             foreach ($otherUsers as $member) {
                 $user->personalTeam()->users()->attach(

@@ -16,6 +16,6 @@ class UserSeeder extends Seeder
 
         User::factory()->anamarijaPapic()->withPersonalTeam()->create();
 
-        User::factory(20)->withPersonalTeam()->create();
+        User::factory(14)->withPersonalTeam()->create();
     }
 }
