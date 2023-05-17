@@ -26,17 +26,35 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $user = User::factory()->withPersonalTeam()->create();
-        $project = Project::factory()->create([
-            'team_id' => $user->currentTeam,
-            'user_id' => $user,
-        ]);
-
         return [
             'title' => $this->faker->unique()->sentence(),
             'content' => $this->faker->paragraphs(5, true),
-            'project_id' => $project,
-            'user_id' => $user,
+            'project_id' => Project::factory(),
+            'user_id' => User::factory(),
         ];
+    }
+
+    /**
+     * Indicate that the post belongs to specific project.
+     */
+    public function belongsToProject(Project $project): static
+    {
+        return $this->state(function (array $attributes) use ($project) {
+            return [
+                'project_id' => $project,
+            ];
+        });
+    }
+
+    /**
+     * Indicate that user is post author.
+     */
+    public function belongsToUser(User $user): static
+    {
+        return $this->state(function (array $attributes) use ($user) {
+            return [
+                'user_id' => $user,
+            ];
+        });
     }
 }
