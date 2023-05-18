@@ -10,9 +10,8 @@
                     <x-input-error for="title" class="mt-2" />
                 </div>
                 <div class="mt-4">
-                    <textarea id="content" rows="9"
-                        class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                        placeholder="{{ __('Write your thoughts here...') }}" wire:model.defer="content"></textarea>
+                    <x-textarea id="content" rows="9" class="mt-1 block w-full" 
+                        placeholder="{{ __('Write your thoughts here...') }}" wire:model.defer="content" />
                     <x-input-error for="content" class="mt-2" />
                 </div>
             </div>

@@ -55,10 +55,7 @@
         <x-slot name="content">
             <div class="mt-4">
                 <x-label for="content" value="{{ __('Content') }}" />
-                <textarea id="content" rows="3"
-                    class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-                    wire:model.defer="content">
-                </textarea>
+                <x-textarea id="content" rows="3" class="mt-1 block w-full" wire:model.defer="content" />
                 <x-input-error for="content" class="mt-2" />
             </div>
         </x-slot>
