@@ -2,7 +2,8 @@
     <div class="h-auto max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
         <a href="{{ route('teams.projects.discussion', ['team' => $project->team_id, 'project' => $project->id]) }}">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                {{ $project->name }}</h5>
+                {{ $project->name }}
+            </h5>
         </a>
         <p class="mb-3 font-normal text-gray-700">{{ $project->description }}</p>
         <a href="{{ route('teams.projects.discussion', ['team' => $project->team_id, 'project' => $project->id]) }}"
