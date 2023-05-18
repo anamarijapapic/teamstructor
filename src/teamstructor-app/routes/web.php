@@ -33,3 +33,11 @@ Route::middleware([
     Route::get('/teams/{team}/projects/{project}/discussion', ShowPosts::class)->name('teams.projects.discussion');
     Route::get('/teams/{team}/projects/{project}/resources', ShowResources::class)->name('teams.projects.resources');
 });
+
+Route::middleware([
+    'can:admin-privileges',
+])->group(function () {
+    Route::get('/admin-dashboard', function () {
+        return view('admin-dashboard');
+    })->name('admin-dashboard');
+});

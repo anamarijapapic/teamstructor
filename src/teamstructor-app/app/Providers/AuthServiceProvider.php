@@ -12,6 +12,7 @@ use App\Policies\PostPolicy;
 use App\Policies\ProjectPolicy;
 use App\Policies\ResourcePolicy;
 use App\Policies\TeamPolicy;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -36,6 +37,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
+
+        Gate::define('admin-privileges', function ($user) {
+            return $user->isAdministrator()
+                ? Response::allow()
+                : Response::deny('You must be an administrator.');
+        });
 
         Gate::before(function (User $user, string $ability) {
             if ($user->isAdministrator()) {
