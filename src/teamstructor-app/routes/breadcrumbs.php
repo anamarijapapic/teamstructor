@@ -29,3 +29,9 @@ Breadcrumbs::for('resources', function (BreadcrumbTrail $trail, Team $team, Proj
     $trail->parent('project', $team, $project);
     $trail->push(__('Resources'), route('teams.projects.resources', [$team, $project]));
 });
+
+// Admin Dashboard > Users
+Breadcrumbs::for('admin-users', function (BreadcrumbTrail $trail) {
+    $trail->push(__('Admin Dashboard'), route('admin.dashboard'));
+    $trail->push(__('Users'), route('admin.dashboard.users'));
+});

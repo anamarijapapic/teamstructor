@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\ShowUsers;
 use App\Http\Livewire\Media\ShowResources;
 use App\Http\Livewire\Posts\ShowPosts;
 use App\Http\Livewire\Projects\ShowProjects;
@@ -42,4 +43,7 @@ Route::group([
     Route::get('/', function () {
         return view('admin-dashboard');
     })->name('admin.dashboard');
+
+    Route::get('/users', ShowUsers::class)
+        ->name('admin.dashboard.users');
 });
