@@ -70,7 +70,7 @@
         </div>
 
         <div class="px-3 py-2">
-            <p>{{ __('Uploaded:') }} {{ $resource->created_at->format('d.m.Y H:i:s') }}</p>
+            <p>{{ __('Uploaded at:') }} {{ $resource->created_at->format('d.m.Y. H:i:s') }}</p>
             <p>{{ __('Author:') }} {{ $author->name }}</p>
             <p>{{ __('Type:') }} {{ $resource->mime_type }}</p>
             <p>{{ __('Size:') }} {{ $resource->human_readable_size }}</p>
