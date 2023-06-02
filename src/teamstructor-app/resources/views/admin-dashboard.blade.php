@@ -64,7 +64,8 @@
                         </div>
 
                         <p class="mt-4 text-sm">
-                            <a href="#" class="inline-flex items-center font-semibold text-indigo-700">
+                            <a href="{{ route('admin.dashboard.teams') }}"
+                                class="inline-flex items-center font-semibold text-indigo-700">
                                 {{ __('Manage existing teams') }}
 
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"

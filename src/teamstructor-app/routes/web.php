@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\ShowTeams;
 use App\Http\Livewire\Admin\ShowUsers;
 use App\Http\Livewire\Media\ShowResources;
 use App\Http\Livewire\Posts\ShowPosts;
@@ -46,4 +47,7 @@ Route::group([
 
     Route::get('/users', ShowUsers::class)
         ->name('admin.dashboard.users');
+
+    Route::get('/teams', ShowTeams::class)
+        ->name('admin.dashboard.teams');
 });
