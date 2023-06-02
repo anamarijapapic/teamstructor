@@ -41,3 +41,9 @@ Breadcrumbs::for('admin-teams', function (BreadcrumbTrail $trail) {
     $trail->push(__('Admin Dashboard'), route('admin.dashboard'));
     $trail->push(__('Teams'), route('admin.dashboard.teams'));
 });
+
+// Admin Dashboard > Projects
+Breadcrumbs::for('admin-projects', function (BreadcrumbTrail $trail) {
+    $trail->push(__('Admin Dashboard'), route('admin.dashboard'));
+    $trail->push(__('Projects'), route('admin.dashboard.projects'));
+});

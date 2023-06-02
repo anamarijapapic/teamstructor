@@ -12,16 +12,15 @@
                     <x-application-logo class="block h-12 w-auto" />
 
                     <h1 class="mt-8 text-2xl font-medium text-gray-900">
-                        Welcome to your Teamstructor admin dashboard!
+                        {{ __('Welcome to your Teamstructor admin dashboard!') }}
                     </h1>
 
                     <p class="mt-6 text-gray-500 leading-relaxed">
-                        Teamstructor admin dashboard enables you to manage application users, teams, projects and
-                        resources. We hope you love it.
+                        {{ __('Teamstructor admin dashboard enables you to manage application users, teams, projects and resources. We hope you love it.') }}
                     </p>
                 </div>
 
-                <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
+                <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 p-6 lg:p-8">
                     <div>
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -92,35 +91,9 @@
                         </div>
 
                         <p class="mt-4 text-sm">
-                            <a href="#" class="inline-flex items-center font-semibold text-indigo-700">
+                            <a href="{{ route('admin.dashboard.projects') }}"
+                                class="inline-flex items-center font-semibold text-indigo-700">
                                 {{ __('Manage created projects') }}
-
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    class="ml-1 w-5 h-5 fill-indigo-500">
-                                    <path fill-rule="evenodd"
-                                        d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </p>
-                    </div>
-
-                    <div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" class="w-6 h-6 stroke-gray-400">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75">
-                                </path>
-                            </svg>
-                            <h2 class="ml-3 text-xl font-semibold text-gray-900">
-                                {{ __('Resources') }}
-                            </h2>
-                        </div>
-
-                        <p class="mt-4 text-sm">
-                            <a href="#" class="inline-flex items-center font-semibold text-indigo-700">
-                                {{ __('Manage uploaded resources') }}
 
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                     class="ml-1 w-5 h-5 fill-indigo-500">
