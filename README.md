@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [General Info](#general-info)
-* [Features](#features)
+* [Documentation](#documentation)
 * [Technologies](#technologies)
 * [Database Model](#database-model)
 * [Getting Started](#getting-started)
@@ -13,21 +13,22 @@
 
 Teamstructor is a web application that serves as a teamwork platform. Users can form teams in which team members have access to team projects. Inside each project team members can discuss and store useful resources relevant for that project.
 
-> Project created as a college undergraduate final thesis:  
+> Project created as a university undergraduate final thesis:  
 > SRC146 - Final Thesis  
 > University of Split - University Department of Professional Studies
 
-## Features
+## Documentation
 
-`TO-DO`
+Visit [Teamstructor Docs](https://github.com/anamarijapapic/teamstructor-docs) GitHub repository or preview compiled thesis paper directly at [teamstructor-docs/papic_zavrsni.pdf](https://github.com/anamarijapapic/teamstructor-docs/blob/main/papic_zavrsni.pdf).  
+
+[![Teamstructor Docs](https://github-readme-stats.vercel.app/api/pin/?username=anamarijapapic&repo=teamstructor-docs&show_owner=true&theme=transparent)](https://github.com/anamarijapapic/teamstructor-docs)  
 
 ## Technologies
 
 ![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)  
 ![Livewire](https://img.shields.io/badge/Livewire-4E56A6.svg?style=for-the-badge&logo=Livewire&logoColor=white)  
-![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white)
-![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0.svg?style=for-the-badge&logo=alpinedotjs&logoColor=black)  
+![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white)  
 
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-6C78AF.svg?style=for-the-badge&logo=phpMyAdmin&logoColor=white)  
