@@ -59,25 +59,6 @@ services:
         - minio-data:/data
     command: server /data --console-address :9001
 
-  redis:
-    image: redis:alpine
-    restart: unless-stopped
-    ports:
-      - 6379:6379
-    # command: --loglevel verbose
-
-  phpredisadmin:
-    image: erikdubbelboer/phpredisadmin
-    depends_on:
-      - redis
-    environment:
-      REDIS_1_HOST: redis
-      REDIS_1_PORT: 6379
-    links:
-      - redis
-    ports:
-      - 8085:80
-
   mailhog:
     platform: linux/x86_64
     image: mailhog/mailhog

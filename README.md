@@ -102,8 +102,6 @@ You can run tests by executing the `pest` command:
 A DB administration tool, [phpMyAdmin](https://www.phpmyadmin.net), is available at http://localhost:8080/.
 You can connect to MySQL yourself using the port `3306` on `localhost` from your host. Username and password is `root`.
 
-A simple web interface to manage Redis databases, [phpRedisAdmin](https://github.com/erikdubbelboer/phpRedisAdmin), is available at http://localhost:8085/.
-
 #### Testing Mail Sending
 
 [MailHog](https://github.com/mailhog/MailHog) Web UI, an email testing tool for developers, is available at http://localhost:8025/.
