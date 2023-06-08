@@ -61,7 +61,7 @@ class ShowPost extends Component
             ]);
 
             $this->emitSelf('postUpdated');
-            $this->banner('Post updated successfully.');
+            $this->banner(__('Post updated successfully.'));
 
             $this->openEditModal = false;
 
@@ -87,7 +87,7 @@ class ShowPost extends Component
             Post::where('id', $this->postId)->delete();
 
             $this->emit('postDeleted');
-            $this->banner('Post deleted successfully.');
+            $this->banner(__('Post deleted successfully.'));
 
             $this->openDeleteModal = false;
         }

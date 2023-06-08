@@ -34,7 +34,7 @@ class UploadResource extends Component
             ->toMediaCollection('default', 's3');
 
         $this->emit('resourceAdded');
-        $this->banner('Resource uploaded successfully.');
+        $this->banner(__('Resource uploaded successfully.'));
 
         $this->reset(['resource']);
     }

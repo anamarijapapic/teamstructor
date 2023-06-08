@@ -55,7 +55,7 @@ class ShowComment extends Component
             ]);
 
             $this->emitSelf('commentUpdated');
-            $this->banner('Comment updated successfully.');
+            $this->banner(__('Comment updated successfully.'));
 
             $this->openEditModal = false;
 
@@ -80,7 +80,7 @@ class ShowComment extends Component
             Comment::where('id', $this->commentId)->delete();
 
             $this->emit('commentDeleted');
-            $this->banner('Comment deleted successfully.');
+            $this->banner(__('Comment deleted successfully.'));
 
             $this->openDeleteModal = false;
         }

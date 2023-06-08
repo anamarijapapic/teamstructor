@@ -56,7 +56,7 @@ class ShowProjects extends Component
         $this->openCreateModal = false;
 
         $this->emitSelf('projectAdded');
-        $this->banner('Project created successfully.');
+        $this->banner(__('Project created successfully.'));
 
         $this->reset(['name', 'description']);
     }

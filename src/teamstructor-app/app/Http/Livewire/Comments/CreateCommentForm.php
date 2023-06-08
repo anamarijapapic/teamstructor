@@ -36,7 +36,7 @@ class CreateCommentForm extends Component
         ]);
 
         $this->emitUp('commentAdded');
-        $this->banner('Comment created successfully.');
+        $this->banner(__('Comment created successfully.'));
 
         $this->reset(['content']);
     }

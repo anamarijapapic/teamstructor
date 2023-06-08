@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Project;
 use App\Models\Resource;
 use App\Models\Team;
 use App\Models\User;
@@ -41,7 +42,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('admin-privileges', function ($user) {
             return $user->isAdministrator()
                 ? Response::allow()
-                : Response::deny('You must be an administrator.');
+                : Response::deny(__('You must be an administrator.'));
         });
 
         Gate::before(function (User $user, string $ability) {

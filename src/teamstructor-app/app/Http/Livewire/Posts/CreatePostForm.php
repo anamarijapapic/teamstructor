@@ -40,7 +40,7 @@ class CreatePostForm extends Component
         ]);
 
         $this->emit('postAdded');
-        $this->banner('Post created successfully.');
+        $this->banner(__('Post created successfully.'));
 
         $this->reset(['title', 'content']);
     }

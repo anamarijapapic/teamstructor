@@ -60,7 +60,7 @@ class ShowProject extends Component
             ]);
 
             $this->emitSelf('projectUpdated');
-            $this->banner('Project updated successfully.');
+            $this->banner(__('Project updated successfully.'));
 
             $this->openEditModal = false;
 
@@ -85,7 +85,7 @@ class ShowProject extends Component
             Project::where('id', $this->projectId)->delete();
 
             $this->emit('projectDeleted');
-            $this->banner('Project deleted successfully.');
+            $this->banner(__('Project deleted successfully.'));
 
             $this->openDeleteModal = false;
         }

@@ -73,7 +73,7 @@ class ShowResource extends Component
             $resource->save();
 
             $this->emitSelf('resourceUpdated');
-            $this->banner('Resource updated successfully.');
+            $this->banner(__('Resource updated successfully.'));
 
             $this->openEditModal = false;
 
@@ -100,7 +100,7 @@ class ShowResource extends Component
             $project->deleteMedia($this->resourceId);
 
             $this->emit('resourceDeleted');
-            $this->banner('Resource deleted successfully.');
+            $this->banner(__('Resource deleted successfully.'));
 
             $this->openDeleteModal = false;
         }
