@@ -113,7 +113,7 @@
                                                     class="h-2.5 w-2.5 rounded-full mr-2 
                                         {{ $user->isAdministrator() ? 'bg-green-500' : 'bg-red-500' }}">
                                                 </div>
-                                                {{ $user->isAdministrator() ? 'Yes' : 'No' }}
+                                                {{ $user->isAdministrator() ? __('Yes') : __('No') }}
                                             </div>
                                         </td>
                                     </tr>

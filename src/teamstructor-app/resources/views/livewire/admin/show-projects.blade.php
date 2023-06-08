@@ -119,7 +119,7 @@
                                         <td class="px-6 py-4">
                                             <a href="{{ route('teams.projects.discussion', ['team' => $project->team, 'project' => $project]) }}"
                                                 class="inline-flex items-center font-semibold text-indigo-700"
-                                                title="Discussion">
+                                                title="{{ __('Discussion') }}">
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                     class="ml-1 w-5 h-5 fill-indigo-500">
@@ -134,7 +134,7 @@
 
                                             <a href="{{ route('teams.projects.resources', ['team' => $project->team, 'project' => $project]) }}"
                                                 class="inline-flex items-center font-semibold text-indigo-700"
-                                                title="Resources">
+                                                title="{{ __('Resources') }}">
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                     class="ml-1 w-5 h-5 fill-indigo-500">

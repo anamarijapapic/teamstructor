@@ -20,9 +20,9 @@
                         <br />
                         {{ __('To switch teams you can use the dropdown in upper right corner.') }}
                         <br />
-                        {{ __('Inside each team you can find projects that you and other team members created. Inside each
-                        project you can discuss relevant topics and project updates with other team members and browse
-                        uploaded project resources. We hope you love it.') }}
+                        {{ __('Inside each team you can find projects that you and other team members created.') }}
+                        {{ __('Inside each project you can discuss relevant topics and project updates with other team members and browse uploaded project resources.') }}
+                        {{ __('We hope you love it.') }}
                     </p>
                 </div>
 
@@ -104,7 +104,7 @@
 
                                         <a href="{{ route('teams.projects.discussion', ['team' => $team, 'project' => $project]) }}"
                                             class="inline-flex items-center font-semibold text-indigo-700"
-                                            title="Discussion">
+                                            title="{{ __('Discussion') }}">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                 class="ml-1 w-5 h-5 fill-indigo-500">
@@ -119,7 +119,7 @@
 
                                         <a href="{{ route('teams.projects.resources', ['team' => $team, 'project' => $project]) }}"
                                             class="inline-flex items-center font-semibold text-indigo-700"
-                                            title="Resources">
+                                            title="{{ __('Resources') }}">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                 class="ml-1 w-5 h-5 fill-indigo-500">

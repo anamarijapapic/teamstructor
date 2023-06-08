@@ -127,7 +127,7 @@
                                                     class="h-2.5 w-2.5 rounded-full mr-2 
                                         {{ $team->personal_team ? 'bg-green-500' : 'bg-red-500' }}">
                                                 </div>
-                                                {{ $team->personal_team ? 'Yes' : 'No' }}
+                                                {{ $team->personal_team ? __('Yes') : __('No') }}
                                             </div>
                                         </td>
                                         <td class="px-6 py-4">

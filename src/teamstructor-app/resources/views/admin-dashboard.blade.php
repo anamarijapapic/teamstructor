@@ -16,7 +16,8 @@
                     </h1>
 
                     <p class="mt-6 text-gray-500 leading-relaxed">
-                        {{ __('Teamstructor admin dashboard enables you to manage application users, teams, projects and resources. We hope you love it.') }}
+                        {{ __('Teamstructor admin dashboard enables you to manage application users, teams, projects and resources.') }}
+                        {{ __('We hope you love it.') }}
                     </p>
                 </div>
 
