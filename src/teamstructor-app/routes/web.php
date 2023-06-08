@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use App\Http\Livewire\Admin\ShowProjects as AdminShowProjects;
 use App\Http\Livewire\Admin\ShowTeams;
 use App\Http\Livewire\Admin\ShowUsers;
@@ -55,3 +56,6 @@ Route::group([
     Route::get('/projects', AdminShowProjects::class)
         ->name('admin.dashboard.projects');
 });
+
+Route::get('locale/{locale}', [LanguageController::class, 'switchLocale'])
+    ->name('locale.switch');
