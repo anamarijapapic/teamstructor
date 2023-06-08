@@ -5,13 +5,11 @@
 	// List of extensions which should be recommended for users of this workspace.
 	"recommendations": [
         "formulahendry.auto-close-tag",
-        // "coenraads.bracket-pair-colorizer",
         "mikestead.dotenv",
         "vincaslt.highlight-matching-tag",
         "xabikos.javascriptsnippets",
         "onecentlin.laravel-blade",
         "austenc.laravel-blade-spacer",
-        "dacoto.laravel-easy-blade-snippets",
         "dacoto.laravel-easy-blade-snippets",
         "amiralizadeh9480.laravel-extra-intellisense",
         "codingyu.laravel-goto-view",
@@ -24,7 +22,8 @@
         "mehedidracula.php-namespace-resolver",
         "kokororin.vscode-phpfmt",
         "greven.umbra",
-        "visualstudioexptteam.vscodeintellicode"
+        "visualstudioexptteam.vscodeintellicode",
+        "shufo.vscode-blade-formatter"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": [
