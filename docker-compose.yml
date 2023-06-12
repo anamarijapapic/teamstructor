@@ -39,7 +39,8 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
 
   phpmyadmin:
-    build: ./docker/phpmyadmin/
+    platform: linux/x86_64
+    image: phpmyadmin/phpmyadmin
     ports:
       - 8080:80
     links:
