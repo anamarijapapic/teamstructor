@@ -50,7 +50,7 @@ Visit [Teamstructor Docs](https://github.com/anamarijapapic/teamstructor-docs) G
 
 You should have the following installed with respective minimal versions:
 
-- [Docker Desktop](https://www.docker.com/) bundled with docker-compose
+- [Docker Desktop](https://www.docker.com/) (Docker Engine + Docker Compose V2)
 - [Node.js](https://nodejs.org/en/) 18.x LTS bundled with npm
 
 ### Running the Application
@@ -65,15 +65,15 @@ You should have the following installed with respective minimal versions:
 8. Append the line `127.0.0.1   teamstructor.test` to your `/etc/hosts` file
 9. Generate your local certificate (setup HTTPS) by running: `npm run addcert`
 10. Do a initial build of the website assets by running: `npm run build` from `src/teamstructor-app/` directory
-11. Check that Docker Desktop is running, then build and start the local web server for the first time: `docker-compose up`
-12. Install Composer dependencies: `docker-compose exec teamstructor.test composer install`
-13. Generate application key: `docker-compose exec teamstructor.test php artisan key:generate`
-14. Create symbolic link for storage: `docker-compose exec teamstructor.test php artisan storage:link`
+11. Check that Docker Desktop is running, then build and start the local web server for the first time: `docker compose up`
+12. Install Composer dependencies: `docker compose exec teamstructor.test composer install`
+13. Generate application key: `docker compose exec teamstructor.test php artisan key:generate`
+14. Create symbolic link for storage: `docker compose exec teamstructor.test php artisan storage:link`
 15. Alter folder permissions for `src/teamstructor-app/storage` & `src/teamstructor-app/bootstrap` folders: `sudo chmod -R 777 src/teamstructor-app/storage/ src/teamstructor-app/bootstrap/`
 16. Open [MinIO](https://min.io/) (AWS S3 compatible file storage service) available at http://localhost:9000/ in your browser and login using default root credentials `minioadmin:minioadmin`
  - Create a bucket with bucket name `teamstructor-bucket` and change its access policy to `public`
  - Create access key and copy access key value to `AWS_ACCESS_KEY_ID` and secret key value to `AWS_SECRET_ACCESS_KEY` defined in `src/teamstructor-app/.env`
-17. Run database migrations & seed the database: `docker-compose exec teamstructor.test php artisan migrate:fresh --seed`
+17. Run database migrations & seed the database: `docker compose exec teamstructor.test php artisan migrate:fresh --seed`
 18. Open [https://teamstructor.test/](https://teamstructor.test/) in your browser
 19. Work with the code in the directory.
 
@@ -82,19 +82,19 @@ You should have the following installed with respective minimal versions:
 #### Artisan Commands
 
 To run **Artisan** commands from terminal run command:  
-`docker-compose exec teamstructor.test php artisan <command>`
+`docker compose exec teamstructor.test php artisan <command>`
 
 #### Running Tests
 
 You can run tests by executing the `pest` command:  
-`docker-compose exec teamstructor.test ./vendor/bin/pest`
+`docker compose exec teamstructor.test ./vendor/bin/pest`
 
 #### Useful Docker Commands
 
-- `docker-compose up` starts the docker environment, you can stop it with a single `cmd/ctrl+c`
-- `docker-compose build` re-builds all the containers
-- `docker-compose stop` stops containers
-- `docker-compose down` stops and removes the containers and their volumes
+- `docker compose up` starts the docker environment, you can stop it with a single `cmd/ctrl+c`
+- `docker compose build` re-builds all the containers
+- `docker compose stop` stops containers
+- `docker compose down` stops and removes the containers and their volumes
 - `docker ps` lists all running containers on the system, useful to track down ones that are unintentionally keeping the ports used.
   Note: All commands must be run at the repo root directory.
 
