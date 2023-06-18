@@ -42,7 +42,8 @@ Visit [Teamstructor Docs](https://github.com/anamarijapapic/teamstructor-docs) G
 
 ## Database Model
 
-![Simple Database Model](https://user-images.githubusercontent.com/92815435/227921312-1d30b686-1ebc-4d18-ba05-4380bc21626a.png)
+![Simple Database Model](https://github.com/anamarijapapic/teamstructor/assets/92815435/99f9a28a-cef9-481b-a22c-34f4127f8fbe)  
+![Database ER Diagram](https://github.com/anamarijapapic/teamstructor/assets/92815435/f6efeebc-bf93-41d1-920d-52bc87e6459f)  
 
 ## Getting Started
 
